@@ -5,7 +5,6 @@ let UsuariController = require("../controllers/usuari");
 
 const api = express.Router();
 
-api.get("/tots", UsuariController.proves);
 api.post("/registre", UsuariController.guardarUsuari);
 /*
 api.post("/post", (req, res) => {
