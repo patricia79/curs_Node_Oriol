@@ -13,7 +13,7 @@ app.get('/get', (req, res) => {
 
 
 app.post('/post', (req, res) => {
-    res.send('Sóc un post')
+    res.json(req.body)// et torna un json amb les dades. al postman vas al body, form-encode i poses els camps/dades amb els valors que vulguis
 })
 
 
