@@ -1,3 +1,6 @@
+'use strict';// per emprar expressions de js més modernes
+
+
 let mongoose = require('mongoose')
 const app = require('./app')
 const port = 3000
