@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost:27017/curs_nodejs', (err, res) => {
     })
     server.listen(port, hostname, () => {
         console.log(`Server running at http://${hostname}:${port}/`)
-    }
+    })
     
 
 
