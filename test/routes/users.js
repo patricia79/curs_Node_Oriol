@@ -1,3 +1,6 @@
+'use strict';// per emprar expressions de js més modernes
+
+
 const express = require('express')
 const api = express.Router()
 
