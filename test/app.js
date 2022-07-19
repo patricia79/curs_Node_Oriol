@@ -6,6 +6,18 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+//middle1
+app.use((req, res, next) => {
+    console.log('Middleware 1')
+    next()
+})
+
+//middle2
+app.use((req, res, next) => {
+    console.log('Middleware 2')
+    next()
+})
+
 
 app.get('/get', (req, res) => {
     res.send('Sóc un get')
