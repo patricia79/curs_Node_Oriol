@@ -5,9 +5,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const app = express()
-
+let user_routes = require('./routes/users')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+app.use('/api', user_routes)// definir ruta base sobre la que treballarem
+
 
 /*
 const funcioTest = () => {
