@@ -33,7 +33,8 @@ function guardarUsuari(req, res) {
   }
 }
 
-function veureUsuari(req, res) { // veure un usuari concret, però fem un post pq ficarem un mail en el body
+function veureUsuari(req, res) {
+  // veure un usuari concret, però fem un post pq ficarem un mail en el body
   let params = req.body;
   let email = params.email.toLowerCase(); // recollim el email que arriba en la peticio amb el metode post
 
@@ -45,33 +46,56 @@ function veureUsuari(req, res) { // veure un usuari concret, però fem un post p
       if (!usuari) {
         res.status(404).send({ message: "Les credencials no son correctes" });
       } else {
-        // dades de l'usuari loguejat       
+        // dades de l'usuari loguejat
         res.status(200).send({ usuari }); //si no indiquem cap propietat, emprarà la de l'usuari que coincideix amb el nom de l'objecte
       }
     }
   });
 }
 
-function veureTotsUsuaris(req, res) { // veure tots els usuaris
-     
-    Usuari.find((err, usuari)=>{
-        if(err){
-         res.status(500).send({ message: "Error en la sol·licitud" });
+function veureTotsUsuaris(req, res) {
+  // veure tots els usuaris
+
+  Usuari.find((err, usuari) => {
+    if (err) {
+      res.status(500).send({ message: "Error en la sol·licitud" });
+    } else {
+      if (!usuari) {
+        res.status(404).send({ message: "No consta al registre" });
       } else {
-        if (!usuari) {
-          res.status(404).send({ message: "No consta al registre" });
-        } else {
-          // dades de l'usuari loguejat       
-          res.status(200).send({ usuaris: usuari }); //si no indiquem cap propietat, emprarà la de l'usuari que coincideix amb el nom de l'objecte
-        }
+        // dades de l'usuari loguejat
+        res.status(200).send({ usuaris: usuari }); //si no indiquem cap propietat, emprarà la de l'usuari que coincideix amb el nom de l'objecte
       }
-    });
-  }
+    }
+  });
+}
 
+function actualitzarUsuari(req, res) {
+  // actualitzar un usuari concret, però fem un post pq ficarem un mail en el body
+  let usuariId = req.params.id;
+  let update = req.body;
 
+  Usuari.findByIdAndUpdate(usuariId, update, (err, usuariActualitzat) => {
+    if (err) {
+      res.status(500).send({ message: "Error a l'actualitzar l'usuari" });
+    } else {
+      if (!usuariActualitzat) {
+        res.status(404).send({ message: "No s'ha pogut actualitzar l'usuari" });
+      } else {
+        res.status(200).send({ usuari: usuariActualitzat });
+      }
+    }
+  });
+}
+
+function eliminarUsuari(req, res) {
+  // eliminar un usuari concret, però fem un post pq ficarem un mail en el body
+  let usuariId = req.params.id;
+}
 
 module.exports = {
   guardarUsuari,
   veureUsuari,
-  veureTotsUsuaris
+  veureTotsUsuaris,
+  actualitzarUsuari,
 };
