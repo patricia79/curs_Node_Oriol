@@ -88,9 +88,21 @@ function actualitzarUsuari(req, res) {
   });
 }
 
-function eliminarUsuari(req, res) {
-  // eliminar un usuari concret, però fem un post pq ficarem un mail en el body
-  let usuariId = req.params.id;
+function borrarUsuari(req, res) {
+  // eliminar un usuari concret
+  let usuariId = req.params.id; // recollim el id que arriba en la peticio
+
+  Usuari.findByIdAndDelete(usuariId, (err, usuariBorrat) => {
+    if (err) {
+      res.status(500).send({ message: "Error a l'eliminar l'usuari" });
+    } else {
+      if (!usuariBorrat) {
+        res.status(404).send({ message: "No s'ha pogut eliminar l'usuari" });
+      } else {
+        res.status(200).send({ usuari:usuariBorrat });
+      }
+    }
+  });
 }
 
 module.exports = {
@@ -98,4 +110,5 @@ module.exports = {
   veureUsuari,
   veureTotsUsuaris,
   actualitzarUsuari,
+  borrarUsuari
 };

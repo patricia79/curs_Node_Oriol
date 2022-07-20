@@ -9,6 +9,7 @@ api.post("/registre", UsuariController.guardarUsuari);
 api.post("/veureusuari", UsuariController.veureUsuari);
 api.get("/veuretotsusuaris", UsuariController.veureTotsUsuaris);
 api.put("/actualitzar-usuari/:id", UsuariController.actualitzarUsuari);
+api.delete("/borrarusuari/:id", UsuariController.borrarUsuari);
 /*
 api.post("/post", (req, res) => {
   res.json(req.body); // et torna un json amb les dades. al postman vas al body, form-encode i poses els camps/dades amb els valors que vulguis
