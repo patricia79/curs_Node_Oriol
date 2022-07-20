@@ -35,7 +35,7 @@ function guardarUsuari(req, res) {
 
 function veureUsuari(req, res) { // veure un usuari concret, però fem un post pq ficarem un mail en el body
   let params = req.body;
-  let email = params.email.toLowerCase; // recollim el email que arriba en la peticio amb el metode post
+  let email = params.email.toLowerCase(); // recollim el email que arriba en la peticio amb el metode post
 
   Usuari.findOne({ email: email }, (err, usuari) => {
     //permet cercar un registre per una propietat i hem de definir-li una arrow function amb l'error i l'objecte
