@@ -52,7 +52,26 @@ function veureUsuari(req, res) { // veure un usuari concret, però fem un post p
   });
 }
 
+function veureTotsUsuaris(req, res) { // veure tots els usuaris
+     
+    Usuari.find((err, usuari)=>{
+        if(err){
+         res.status(500).send({ message: "Error en la sol·licitud" });
+      } else {
+        if (!usuari) {
+          res.status(404).send({ message: "No consta al registre" });
+        } else {
+          // dades de l'usuari loguejat       
+          res.status(200).send({ usuaris: usuari }); //si no indiquem cap propietat, emprarà la de l'usuari que coincideix amb el nom de l'objecte
+        }
+      }
+    });
+  }
+
+
+
 module.exports = {
   guardarUsuari,
-  veureUsuari
+  veureUsuari,
+  veureTotsUsuaris
 };
