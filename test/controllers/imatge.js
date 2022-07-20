@@ -1,6 +1,5 @@
 "use strict"; // per emprar expressions de js més modernes
 
-const imatge = require("../models/imatge");
 let Imatge = require("../models/imatge");
 
     function uploadImages(req, res) {
