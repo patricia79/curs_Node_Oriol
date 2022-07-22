@@ -7,7 +7,8 @@ let ImatgeController = require("../controllers/imatge");
 const api = express.Router();
 let multipart = require("connect-multiparty");
 
-// middleware per a l'upload de fitxers
+// middleware per a l'upload de fitxers: realitzar un middleware a on li hem de definir la ruta de
+// la carpeta on volem guardar els fitxers
 
 let md_upload = multipart({ uploadDir: "./uploads/users" });
 
@@ -18,7 +19,6 @@ api.put("/actualitzar-usuari/:id", UsuariController.actualitzarUsuari);
 api.delete("/borrarusuari/:id", UsuariController.borrarUsuari);
 
 api.post("/upload-image-user/:id", [md_upload], ImatgeController.uploadImages);
-
 
 
 
